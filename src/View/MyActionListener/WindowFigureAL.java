@@ -137,11 +137,22 @@ public class WindowFigureAL<T extends Figure, C extends MyContainer> implements 
     }
 
     private void updateWindow() {
-        for (int id = 0; id < container.getSize(); id++) {
-            if (container.getFigure(id) != null && container.getFigure(id).isShowed &&
-                    container.getFigure(id).getColor() == Color.BLUE) {
-                container.getFigure(id).paintComponent();
-                System.out.println(id);
+        if (mw.myArray != null) {
+            for (int id = 0; id < mw.myArray.getSize(); id++) {
+                if (mw.myArray.getFigure(id) != null && mw.myArray.getFigure(id).isShowed &&
+                        mw.myArray.getFigure(id).getColor() == Color.BLUE) {
+                    mw.myArray.getFigure(id).paintComponent();
+                    System.out.println(id);
+                }
+            }
+        }
+        if (mw.myLinkedList != null) {
+            for (int id = 0; id < mw.myLinkedList.getSize(); id++) {
+                if (mw.myLinkedList.getFigure(id) != null && mw.myLinkedList.getFigure(id).isShowed &&
+                        mw.myLinkedList.getFigure(id).getColor() == Color.BLUE) {
+                    mw.myLinkedList.getFigure(id).paintComponent();
+                    System.out.println(id);
+                }
             }
         }
     }

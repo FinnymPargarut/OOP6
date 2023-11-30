@@ -3,10 +3,12 @@ package View.MyActionListener;
 import Figures.*;
 import Figures.Containers.MyArray;
 import Figures.Containers.MyLinkedList;
+import Figures.Rectangle;
 import View.MainWindow;
 import View.Window;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.concurrent.ThreadLocalRandom;
@@ -59,6 +61,7 @@ public class ArrayListAL implements ActionListener {
         } else {
             mw.myLinkedList.iteratorMethod(1);
         }
+        updateWindow();
     }
 
     private void addRandomFigure() {
@@ -94,6 +97,27 @@ public class ArrayListAL implements ActionListener {
         }
     }
 
+    private void updateWindow() {
+        if (mw.myArray != null) {
+            for (int id = 0; id < mw.myArray.getSize(); id++) {
+                if (mw.myArray.getFigure(id) != null && mw.myArray.getFigure(id).isShowed &&
+                        mw.myArray.getFigure(id).getColor() == Color.BLUE) {
+                    mw.myArray.getFigure(id).paintComponent();
+                    System.out.println(id);
+                }
+            }
+        }
+        if (mw.myLinkedList != null) {
+            for (int id = 0; id < mw.myLinkedList.getSize(); id++) {
+                if (mw.myLinkedList.getFigure(id) != null && mw.myLinkedList.getFigure(id).isShowed &&
+                        mw.myLinkedList.getFigure(id).getColor() == Color.BLUE) {
+                    mw.myLinkedList.getFigure(id).paintComponent();
+                    System.out.println(id);
+                }
+            }
+        }
+    }
+
     private void delete() {
         chooseContainer();
         if (isArray) {
@@ -107,5 +131,6 @@ public class ArrayListAL implements ActionListener {
             mw.myLinkedList = null;
             System.out.println("Linked list was deleted");
         }
+        updateWindow();
     }
 }
